@@ -36,6 +36,20 @@ tape('strip flag emoji', function (t) {
   t.end()
 })
 
+tape('strip Unicode Version 7.0 emoji', function (t) {
+  emoji = 'cool chipmunks 🕶🐿👁🖼looking at art'
+  t.equal(emojiStrip(emoji), 'cool chipmunks looking at art')
+  
+  t.end()
+})
+
+tape('ignore asia characters', function (t) {
+  const nonEmoji = '会意字 / 會意字 huìyìzì'
+  t.equal(emojiStrip(nonEmoji), nonEmoji)
+  
+  t.end()
+})
+
 tape('strip Unicode Version 9.0 emoji', function (t) {
   emoji = 'y u no strip 🤜punch🤛🏿?'
   t.equal(emojiStrip(emoji), 'y u no strip punch?')
